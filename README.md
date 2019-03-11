@@ -24,22 +24,24 @@ Other way to run project as its not available on NPM
 1. Add app.js file on root directory
 2. Paste following code
 
-import express from 'express';
 
-import RequestRateLimiter from './src';
+    import express from 'express';
+    import RequestRateLimiter from './src';
 
-var app = express();
+    var app = express();
+    const port = 3000
 
-const port = 3000
+    var requestRateLimiter = new RequestRateLimiter(100, 3600);
 
-var requestRateLimiter = new RequestRateLimiter(100, 3600);
+    app.get('/', (req, res) => res.send('Hello World!'));
 
-app.get('/', (req, res) => res.send('Hello World!'));
+    app.use(requestRateLimiter.middleware);
+    app.start();
+    
 
-app.use(requestRateLimiter.middleware);
-app.start();
+    app.get('/', (req, res) => res.send('Hello World!'));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+    app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
 3. run node app.js
 
