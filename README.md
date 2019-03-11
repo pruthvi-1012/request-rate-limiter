@@ -1,4 +1,4 @@
-# equest-rate-limiter
+# Request-rate-limiter
 
 A node module to implement request rate limiter with express.
 
@@ -25,7 +25,8 @@ Other way to run project as its not available on NPM
 2. Paste following code
 
 import express from 'express';
-import RequestRateLimiter from './src'
+
+import RequestRateLimiter from './src';
 
 var app = express();
 
